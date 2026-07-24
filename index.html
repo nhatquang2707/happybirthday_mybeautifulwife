@@ -15,7 +15,7 @@
     <main class="site">
       <audio
         id="birthday-music"
-        src="./assets/young-and-beautiful-chorus.mp3"
+        src="./young-and-beautiful-chorus.mp3"
         loop
         preload="metadata"
       ></audio>
@@ -50,7 +50,7 @@
           <div class="calendar-stage">
             <img
               class="calendar-art"
-              src="./assets/hero-calendar-kitty.png"
+              src="./hero-calendar-kitty.png"
               alt="Cuốn lịch màu hồng pastel với Kitty đáng yêu"
             />
             <div class="date-card">
@@ -87,16 +87,16 @@
             <div class="envelope-back"></div>
             <article class="letter-card">
               <span class="letter-date">27.07.2026</span>
-              <p class="letter-dear">Gửi vợ yêu,</p>
-              <p>
+              <p class="letter-dear" id="letter-dear">Gửi vợ yêu,</p>
+              <p id="letter-paragraph-1">
                 Cảm ơn em vì đã xuất hiện, ở bên anh và biến những ngày bình
                 thường thành những kỷ niệm thật đặc biệt.
               </p>
-              <p>
+              <p id="letter-paragraph-2">
                 Chúc em tuổi mới luôn rạng rỡ, bình yên và được yêu thương thật
                 nhiều. Anh mong mỗi sinh nhật sau này vẫn luôn có thể ở cạnh em.
               </p>
-              <p class="letter-sign">Yêu em thật nhiều ♡</p>
+              <p class="letter-sign" id="letter-sign">Yêu em thật nhiều ♡</p>
             </article>
             <div class="envelope-front"></div>
             <div class="envelope-flap"></div>
@@ -128,20 +128,32 @@
 
           <div class="polaroid-grid">
             <figure class="polaroid polaroid-1">
-              <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Ảnh của chúng mình</span></div>
-              <figcaption><span>01</span>Ngày mình bắt đầu</figcaption>
+              <div class="photo-frame">
+                <img class="photo-image" data-photo="0" alt="Kỷ niệm của chúng mình" />
+                <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Thêm ảnh photo-1.jpg</span></div>
+              </div>
+              <figcaption><span>01</span><b data-caption="0">Ngày mình bắt đầu</b></figcaption>
             </figure>
             <figure class="polaroid polaroid-2">
-              <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Ảnh của chúng mình</span></div>
-              <figcaption><span>02</span>Một chuyến đi thật vui</figcaption>
+              <div class="photo-frame">
+                <img class="photo-image" data-photo="1" alt="Kỷ niệm của chúng mình" />
+                <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Thêm ảnh photo-2.jpg</span></div>
+              </div>
+              <figcaption><span>02</span><b data-caption="1">Một chuyến đi thật vui</b></figcaption>
             </figure>
             <figure class="polaroid polaroid-3">
-              <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Ảnh của chúng mình</span></div>
-              <figcaption><span>03</span>Khoảnh khắc bình yên</figcaption>
+              <div class="photo-frame">
+                <img class="photo-image" data-photo="2" alt="Kỷ niệm của chúng mình" />
+                <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Thêm ảnh photo-3.jpg</span></div>
+              </div>
+              <figcaption><span>03</span><b data-caption="2">Khoảnh khắc bình yên</b></figcaption>
             </figure>
             <figure class="polaroid polaroid-4">
-              <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Ảnh của chúng mình</span></div>
-              <figcaption><span>04</span>Và thật nhiều ngày sau</figcaption>
+              <div class="photo-frame">
+                <img class="photo-image" data-photo="3" alt="Kỷ niệm của chúng mình" />
+                <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Thêm ảnh photo-4.jpg</span></div>
+              </div>
+              <figcaption><span>04</span><b data-caption="3">Và thật nhiều ngày sau</b></figcaption>
             </figure>
           </div>
 
@@ -157,6 +169,7 @@
 
       <div class="burst-layer" aria-hidden="true"></div>
     </main>
+    <script src="./content.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

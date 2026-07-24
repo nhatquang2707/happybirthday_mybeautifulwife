@@ -16,6 +16,31 @@ let musicOn = false;
 let musicUnavailable = false;
 let letterOpen = false;
 
+function applyEditableContent() {
+  const content = window.BIRTHDAY_CONTENT || {};
+  const textFields = {
+    "letter-dear": content.letterDear,
+    "letter-paragraph-1": content.letterParagraph1,
+    "letter-paragraph-2": content.letterParagraph2,
+    "letter-sign": content.letterSign,
+  };
+
+  Object.entries(textFields).forEach(([id, value]) => {
+    if (typeof value === "string") document.querySelector(`#${id}`).textContent = value;
+  });
+
+  (content.photos || []).forEach((photo, index) => {
+    const image = document.querySelector(`[data-photo="${index}"]`);
+    const caption = document.querySelector(`[data-caption="${index}"]`);
+    if (!image || !photo?.file) return;
+
+    image.addEventListener("load", () => image.classList.add("is-loaded"));
+    image.addEventListener("error", () => image.classList.remove("is-loaded"));
+    image.src = `./${photo.file}`;
+    if (caption && photo.caption) caption.textContent = photo.caption;
+  });
+}
+
 function makeBurst(x, y) {
   const kinds = ["kitty", "heart", "bow"];
   const count = 3 + Math.floor(Math.random() * 3);
@@ -140,3 +165,5 @@ document.querySelector(".site").addEventListener("pointerdown", (event) => {
   if (event.target.closest("button, a")) return;
   makeBurst(event.clientX, event.clientY);
 });
+
+applyEditableContent();
