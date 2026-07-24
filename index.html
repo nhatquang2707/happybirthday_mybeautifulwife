@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff9fb" />
+    <meta
+      name="description"
+      content="Món quà sinh nhật dành cho vợ yêu — 27.07.2026"
+    />
+    <title>Chúc mừng sinh nhật vợ yêu · 27.07.2026</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="birthday-page">
+    <main class="site">
+      <audio
+        id="birthday-music"
+        src="./assets/young-and-beautiful-chorus.mp3"
+        loop
+        preload="metadata"
+      ></audio>
+
+      <header class="topbar">
+        <button class="brand" type="button" data-screen="calendar" aria-label="Về trang lịch">
+          <span class="brand-heart">♥</span>
+          <span>Gửi vợ yêu</span>
+        </button>
+
+        <button class="music-toggle" type="button" aria-label="Bật nhạc" title="Bật nhạc">
+          <span class="music-bars"><i></i><i></i><i></i></span>
+          <span class="music-label">Âm nhạc</span>
+        </button>
+      </header>
+
+      <div class="page-deck">
+        <section
+          class="page-screen is-active calendar-page"
+          data-page="calendar"
+          aria-hidden="false"
+          aria-labelledby="birthday-title"
+        >
+          <div class="ambient ambient-one">♡</div>
+          <div class="ambient ambient-two">♥</div>
+          <div class="ambient ambient-three">♡</div>
+          <p class="eyebrow">Một ngày thật đặc biệt</p>
+          <h1 id="birthday-title" class="sr-only">
+            Chúc mừng sinh nhật vợ yêu ngày 27 tháng 7 năm 2026
+          </h1>
+
+          <div class="calendar-stage">
+            <img
+              class="calendar-art"
+              src="./assets/hero-calendar-kitty.png"
+              alt="Cuốn lịch màu hồng pastel với Kitty đáng yêu"
+            />
+            <div class="date-card">
+              <span class="date-number">27</span>
+              <span class="date-month">JUL</span>
+              <span class="date-year">2026</span>
+              <span class="date-label">SINH NHẬT EM</span>
+            </div>
+          </div>
+
+          <button class="primary-button" id="open-gift" type="button">
+            <span>Mở món quà dành cho em</span>
+            <span class="button-heart" aria-hidden="true">♥</span>
+          </button>
+          <p class="click-hint">Chạm nhẹ vào màn hình nhé ♡</p>
+        </section>
+
+        <section
+          class="page-screen is-after letter-page"
+          data-page="letter"
+          aria-hidden="true"
+          aria-labelledby="letter-title"
+        >
+          <button class="back-button" type="button" data-screen="calendar">
+            <span aria-hidden="true">←</span> Trang lịch
+          </button>
+
+          <div class="page-heading">
+            <p>Một lá thư chỉ dành cho em</p>
+            <h2 id="letter-title">Có vài điều anh muốn nói...</h2>
+          </div>
+
+          <div class="envelope">
+            <div class="envelope-back"></div>
+            <article class="letter-card">
+              <span class="letter-date">27.07.2026</span>
+              <p class="letter-dear">Gửi vợ yêu,</p>
+              <p>
+                Cảm ơn em vì đã xuất hiện, ở bên anh và biến những ngày bình
+                thường thành những kỷ niệm thật đặc biệt.
+              </p>
+              <p>
+                Chúc em tuổi mới luôn rạng rỡ, bình yên và được yêu thương thật
+                nhiều. Anh mong mỗi sinh nhật sau này vẫn luôn có thể ở cạnh em.
+              </p>
+              <p class="letter-sign">Yêu em thật nhiều ♡</p>
+            </article>
+            <div class="envelope-front"></div>
+            <div class="envelope-flap"></div>
+            <button type="button" class="wax-seal" aria-label="Mở lá thư">♥</button>
+          </div>
+
+          <div class="letter-actions">
+            <p class="letter-instruction">Bấm vào dấu niêm phong để mở thư</p>
+            <button class="next-button" type="button" data-screen="album" tabindex="-1">
+              Xem album của chúng mình <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </section>
+
+        <section
+          class="page-screen is-after album-page"
+          data-page="album"
+          aria-hidden="true"
+          aria-labelledby="album-title"
+        >
+          <button class="back-button" type="button" data-screen="letter">
+            <span aria-hidden="true">←</span> Lá thư
+          </button>
+
+          <div class="page-heading album-heading">
+            <p>Album của chúng mình</p>
+            <h2 id="album-title">Những khoảnh khắc anh luôn trân trọng</h2>
+          </div>
+
+          <div class="polaroid-grid">
+            <figure class="polaroid polaroid-1">
+              <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Ảnh của chúng mình</span></div>
+              <figcaption><span>01</span>Ngày mình bắt đầu</figcaption>
+            </figure>
+            <figure class="polaroid polaroid-2">
+              <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Ảnh của chúng mình</span></div>
+              <figcaption><span>02</span>Một chuyến đi thật vui</figcaption>
+            </figure>
+            <figure class="polaroid polaroid-3">
+              <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Ảnh của chúng mình</span></div>
+              <figcaption><span>03</span>Khoảnh khắc bình yên</figcaption>
+            </figure>
+            <figure class="polaroid polaroid-4">
+              <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Ảnh của chúng mình</span></div>
+              <figcaption><span>04</span>Và thật nhiều ngày sau</figcaption>
+            </figure>
+          </div>
+
+          <p class="album-footer">Made with <span>♥</span> for my love · 27.07.2026</p>
+        </section>
+      </div>
+
+      <nav class="page-dots" aria-label="Điều hướng các trang">
+        <button class="is-current" type="button" data-screen="calendar" aria-label="Đến trang 1" aria-current="page"></button>
+        <button type="button" data-screen="letter" aria-label="Đến trang 2"></button>
+        <button type="button" data-screen="album" aria-label="Đến trang 3"></button>
+      </nav>
+
+      <div class="burst-layer" aria-hidden="true"></div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
