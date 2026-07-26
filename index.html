@@ -127,37 +127,88 @@
           </div>
 
           <div class="polaroid-grid">
-            <figure class="polaroid polaroid-1">
+            <figure class="polaroid polaroid-1 memory-card" tabindex="0" role="button" aria-expanded="false" aria-label="Mở kỷ niệm 1">
               <div class="photo-frame">
                 <img class="photo-image" data-photo="0" alt="Kỷ niệm của chúng mình" />
                 <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Thêm ảnh photo-1.jpg</span></div>
               </div>
               <figcaption><span>01</span><b data-caption="0">Ngày mình bắt đầu</b></figcaption>
+              <div class="memory-cover" aria-hidden="true">
+                <span class="cover-bow">🎀</span>
+                <strong>Kỷ niệm 01</strong>
+                <small>Chạm để mở ♡</small>
+              </div>
             </figure>
-            <figure class="polaroid polaroid-2">
+            <figure class="polaroid polaroid-2 memory-card" tabindex="0" role="button" aria-expanded="false" aria-label="Mở kỷ niệm 2">
               <div class="photo-frame">
                 <img class="photo-image" data-photo="1" alt="Kỷ niệm của chúng mình" />
                 <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Thêm ảnh photo-2.jpg</span></div>
               </div>
               <figcaption><span>02</span><b data-caption="1">Một chuyến đi thật vui</b></figcaption>
+              <div class="memory-cover" aria-hidden="true">
+                <span class="cover-bow">🎀</span>
+                <strong>Kỷ niệm 02</strong>
+                <small>Chạm để mở ♡</small>
+              </div>
             </figure>
-            <figure class="polaroid polaroid-3">
+            <figure class="polaroid polaroid-3 memory-card" tabindex="0" role="button" aria-expanded="false" aria-label="Mở kỷ niệm 3">
               <div class="photo-frame">
                 <img class="photo-image" data-photo="2" alt="Kỷ niệm của chúng mình" />
                 <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Thêm ảnh photo-3.jpg</span></div>
               </div>
               <figcaption><span>03</span><b data-caption="2">Khoảnh khắc bình yên</b></figcaption>
+              <div class="memory-cover" aria-hidden="true">
+                <span class="cover-bow">🎀</span>
+                <strong>Kỷ niệm 03</strong>
+                <small>Chạm để mở ♡</small>
+              </div>
             </figure>
-            <figure class="polaroid polaroid-4">
+            <figure class="polaroid polaroid-4 memory-card" tabindex="0" role="button" aria-expanded="false" aria-label="Mở kỷ niệm 4">
               <div class="photo-frame">
                 <img class="photo-image" data-photo="3" alt="Kỷ niệm của chúng mình" />
                 <div class="photo-placeholder"><span class="placeholder-bow">🎀</span><span>Thêm ảnh photo-4.jpg</span></div>
               </div>
               <figcaption><span>04</span><b data-caption="3">Và thật nhiều ngày sau</b></figcaption>
+              <div class="memory-cover" aria-hidden="true">
+                <span class="cover-bow">🎀</span>
+                <strong>Kỷ niệm 04</strong>
+                <small>Chạm để mở ♡</small>
+              </div>
             </figure>
           </div>
 
           <p class="album-footer">Made with <span>♥</span> for my love · 27.07.2026</p>
+
+          <button class="album-next-button" type="button" data-screen="heart">
+            Điều cuối cùng dành cho em <span aria-hidden="true">→</span>
+          </button>
+        </section>
+
+        <section
+          class="page-screen is-after heart-page"
+          data-page="heart"
+          aria-hidden="true"
+          aria-labelledby="heart-title"
+        >
+          <button class="back-button" type="button" data-screen="album">
+            <span aria-hidden="true">←</span> Album
+          </button>
+
+          <h2 id="heart-title" class="sr-only">Trái tim dành cho em</h2>
+
+          <div class="language-wishes" aria-hidden="true"></div>
+
+          <div class="living-heart-wrap" aria-hidden="true">
+            <div class="heart-aura"></div>
+            <div class="living-heart">
+              <span class="heart-shine"></span>
+            </div>
+            <div class="heart-shadow"></div>
+          </div>
+
+          <p class="corner-message" id="final-message">
+            anh muốn phiền em đôi chút vào 14h, em có ở nhà khum
+          </p>
         </section>
       </div>
 
@@ -165,6 +216,7 @@
         <button class="is-current" type="button" data-screen="calendar" aria-label="Đến trang 1" aria-current="page"></button>
         <button type="button" data-screen="letter" aria-label="Đến trang 2"></button>
         <button type="button" data-screen="album" aria-label="Đến trang 3"></button>
+        <button type="button" data-screen="heart" aria-label="Đến trang 4"></button>
       </nav>
 
       <div class="burst-layer" aria-hidden="true"></div>

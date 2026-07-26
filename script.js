@@ -1,4 +1,4 @@
-const screens = ["calendar", "letter", "album"];
+const screens = ["calendar", "letter", "album", "heart"];
 const pages = [...document.querySelectorAll("[data-page]")];
 const dots = [...document.querySelectorAll(".page-dots [data-screen]")];
 const audio = document.querySelector("#birthday-music");
@@ -10,6 +10,7 @@ const waxSeal = document.querySelector(".wax-seal");
 const letterInstruction = document.querySelector(".letter-instruction");
 const nextButton = document.querySelector(".next-button");
 const burstLayer = document.querySelector(".burst-layer");
+const languageWishes = document.querySelector(".language-wishes");
 
 let currentScreen = "calendar";
 let musicOn = false;
@@ -23,6 +24,7 @@ function applyEditableContent() {
     "letter-paragraph-1": content.letterParagraph1,
     "letter-paragraph-2": content.letterParagraph2,
     "letter-sign": content.letterSign,
+    "final-message": content.finalMessage,
   };
 
   Object.entries(textFields).forEach(([id, value]) => {
@@ -66,6 +68,52 @@ function makeBurst(x, y) {
   window.setTimeout(() => burst.remove(), 1200);
 }
 
+function randomWishPosition() {
+  let x;
+  let y;
+  let attempts = 0;
+
+  do {
+    x = 7 + Math.random() * 86;
+    y = 12 + Math.random() * 70;
+    attempts += 1;
+  } while (
+    ((x > 27 && x < 73 && y > 22 && y < 78) || (x > 66 && y > 63)) &&
+    attempts < 20
+  );
+
+  return { x, y };
+}
+
+function spawnFloatingWish() {
+  if (currentScreen !== "heart" || !languageWishes) return;
+  const messages = window.BIRTHDAY_CONTENT?.floatingMessages || [];
+  if (!messages.length) return;
+
+  const { x, y } = randomWishPosition();
+  const wish = document.createElement("span");
+  const message = messages[Math.floor(Math.random() * messages.length)];
+  wish.className = "floating-wish";
+  wish.textContent = `${message} ♡`;
+  wish.lang =
+    /[\uac00-\ud7af]/.test(message)
+      ? "ko"
+      : /[\u3040-\u30ff]/.test(message)
+        ? "ja"
+        : /[\u4e00-\u9fff]/.test(message)
+          ? "zh"
+          : "vi";
+  wish.style.left = `${x}%`;
+  wish.style.top = `${y}%`;
+  wish.style.setProperty("--wish-rotate", `${-7 + Math.random() * 14}deg`);
+  wish.style.setProperty("--wish-drift", `${-22 + Math.random() * 44}px`);
+  wish.style.setProperty("--wish-scale", `${0.88 + Math.random() * 0.28}`);
+  languageWishes.appendChild(wish);
+  window.setTimeout(() => wish.remove(), 5600);
+}
+
+window.setInterval(spawnFloatingWish, 620);
+
 async function playMusic() {
   if (!audio || musicUnavailable) return;
   try {
@@ -98,6 +146,12 @@ function changeScreen(next, event) {
 
   const currentIndex = screens.indexOf(next);
   currentScreen = next;
+
+  if (next === "heart") {
+    window.setTimeout(spawnFloatingWish, 120);
+    window.setTimeout(spawnFloatingWish, 340);
+    window.setTimeout(spawnFloatingWish, 560);
+  }
 
   pages.forEach((page) => {
     const target = page.dataset.page;
@@ -164,6 +218,24 @@ waxSeal.addEventListener("click", (event) => {
 document.querySelector(".site").addEventListener("pointerdown", (event) => {
   if (event.target.closest("button, a")) return;
   makeBurst(event.clientX, event.clientY);
+});
+
+document.querySelectorAll(".memory-card").forEach((card) => {
+  const toggleMemory = () => {
+    const revealed = card.classList.toggle("is-revealed");
+    card.setAttribute("aria-expanded", String(revealed));
+    card.setAttribute(
+      "aria-label",
+      revealed ? "Đóng kỷ niệm này" : "Mở kỷ niệm này",
+    );
+  };
+
+  card.addEventListener("click", toggleMemory);
+  card.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    toggleMemory();
+  });
 });
 
 applyEditableContent();
