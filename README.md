@@ -4,13 +4,18 @@ Website sinh nhật dạng tĩnh, tối ưu để chạy trực tiếp trên Git
 
 ## Chỉnh lời chúc và ảnh
 
-- Mở file `content.js` để sửa lời chúc và chú thích ảnh.
+- Mở file `noi-dung.js` để sửa lời chúc, câu chữ ngẫu nhiên và chú thích ảnh.
+- Chỉ thay phần nằm giữa hai dấu ngoặc kép, giữ nguyên dấu phẩy cuối dòng.
 - Tải ảnh lên thư mục chính với đúng tên `photo-1.jpg`, `photo-2.jpg`,
   `photo-3.jpg`, `photo-4.jpg`.
 - Mỗi ảnh và chú thích được ẩn sau một tấm bìa; người xem phải bấm vào từng
   Polaroid để mở kỷ niệm và có thể bấm lần nữa để đóng.
 - Trang cuối có trái tim tạo từ hàng nghìn hạt đỏ phát sáng trên nền tối, chuyển
   động và đập theo nhịp kép, cùng lời nhắn nhỏ ở góc.
+- Trái tim tương tác với chuột và cảm ứng: rê/chạm làm lệch hạt, giữ để hút hạt,
+  bấm để tim đập mạnh và bung hạt màu hồng.
+- Mỗi hạt trong hiệu ứng trái tim là một trái tim nhỏ màu hồng, được dựng theo
+  đường cong tham số của mẫu canvas.
 - Các câu “Anh yêu em” và “Happy birthday” bằng tiếng Việt, Anh, Hàn, Nhật,
   Trung xuất hiện ngẫu nhiên quanh trái tim rồi mờ dần.
 - Hình lịch và nhạc cũng nằm trong thư mục chính để tránh lỗi khi tải lên GitHub.
