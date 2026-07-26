@@ -1,15 +1,10 @@
-/*
- * FILE CHỈNH NỘI DUNG
- *
- * Bạn chỉ cần sửa phần chữ nằm trong dấu ngoặc kép.
- * Muốn thêm ảnh: tải lên 4 file tên photo-1.jpg đến photo-4.jpg.
- */
+
 window.BIRTHDAY_CONTENT = {
   letterDear: "Gửi vợ yêu,",
   letterParagraph1:
     "Cảm ơn em vì đã xuất hiện, ở bên anh và biến những ngày bình thường thành những kỷ niệm thật đặc biệt.",
   letterParagraph2:
-    "Chúc vợ tuổi mới luôn rạng rỡ, bình yên và được yêu thương thật nhiều. Anh mong mỗi sinh nhật sau này sẽ có cơ hội để có thể bầu bạn và chia sẻ từng cảm xúc vui buồn vớ em. Phương à, anh yêu em ♡..",
+    "Chúc vợ tuổi mới luôn rạng rỡ, bình yên và được yêu thương thật nhiều. Anh mong mỗi sinh nhật sau này sẽ có cơ hội để có thể bầu bạn và chia sẻ từng cảm xúc vui buồn vớ em. Phương à, anh yêu em♡..",
   letterSign: "Yêu em thật nhiều ♡",
   finalMessage: "anh muốn phiền em đôi chút vào 14h, em có ở nhà khum",
 
