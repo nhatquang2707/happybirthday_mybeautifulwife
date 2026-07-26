@@ -16,7 +16,7 @@ window.BIRTHDAY_CONTENT = {
   // Nội dung lá thư
   letterDear: "Gửi vợ yêu,",
   letterParagraph1:
-    "Chúc vợ tuổi mới luôn rạng rỡ, bình yên và được yêu thương thật nhiều. Anh mong mỗi sinh nhật sau này sẽ có cơ hội để có thể bầu bạn và chia sẻ từng cảm xúc vui buồn vớ em. Phương à, anh yêu em ♡.",
+    "Chúc vợ tuổi mới luôn rạng rỡ, bình yên và được yêu thương thật nhiều. Anh mong mỗi sinh nhật sau này sẽ có cơ hội để có thể bầu bạn và chia sẻ từng cảm xúc vui buồn với em. Phương à, anh yêu em ♡.",
   letterParagraph2: "",
   letterSign: "",
 
