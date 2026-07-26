@@ -11,6 +11,8 @@ const letterInstruction = document.querySelector(".letter-instruction");
 const nextButton = document.querySelector(".next-button");
 const burstLayer = document.querySelector(".burst-layer");
 const languageWishes = document.querySelector(".language-wishes");
+const heartCanvas = document.querySelector("#particle-heart");
+const heartContext = heartCanvas?.getContext("2d");
 
 let currentScreen = "calendar";
 let musicOn = false;
@@ -114,6 +116,153 @@ function spawnFloatingWish() {
 
 window.setInterval(spawnFloatingWish, 620);
 
+const heartParticles = [];
+let heartCanvasWidth = 0;
+let heartCanvasHeight = 0;
+
+function heartPoint(angle) {
+  return {
+    x: 16 * Math.sin(angle) ** 3,
+    y:
+      13 * Math.cos(angle) -
+      5 * Math.cos(2 * angle) -
+      2 * Math.cos(3 * angle) -
+      Math.cos(4 * angle),
+  };
+}
+
+function buildHeartParticles() {
+  if (!heartCanvas || !heartContext) return;
+  heartParticles.length = 0;
+  const compact = window.innerWidth < 640;
+  const bodyCount = compact ? 650 : 1150;
+  const outlineCount = compact ? 180 : 310;
+  const dustCount = compact ? 100 : 190;
+  const spineCount = compact ? 70 : 130;
+
+  const addParticle = (x, y, type = "body", strength = 1) => {
+    heartParticles.push({
+      x,
+      y,
+      type,
+      strength,
+      size: type === "dust" ? 0.45 + Math.random() * 1.15 : 0.65 + Math.random() * 1.7,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.45 + Math.random() * 1.25,
+      drift: 0.12 + Math.random() * 0.48,
+    });
+  };
+
+  for (let index = 0; index < bodyCount; index += 1) {
+    const angle = Math.random() * Math.PI * 2;
+    const edge = heartPoint(angle);
+    const radius = Math.sqrt(Math.random());
+    addParticle(edge.x * radius, edge.y * radius, "body", 0.55 + radius * 0.45);
+  }
+
+  for (let index = 0; index < outlineCount; index += 1) {
+    const angle = (index / outlineCount) * Math.PI * 2;
+    const edge = heartPoint(angle);
+    addParticle(
+      edge.x + (Math.random() - 0.5) * 0.5,
+      edge.y + (Math.random() - 0.5) * 0.5,
+      "edge",
+      1,
+    );
+  }
+
+  for (let index = 0; index < dustCount; index += 1) {
+    const angle = Math.random() * Math.PI * 2;
+    const edge = heartPoint(angle);
+    const radius = 1.04 + Math.random() * 0.42;
+    addParticle(
+      edge.x * radius + (Math.random() - 0.5) * 3,
+      edge.y * radius + (Math.random() - 0.5) * 3,
+      "dust",
+      0.25 + Math.random() * 0.45,
+    );
+  }
+
+  for (let index = 0; index < spineCount; index += 1) {
+    const y = -15 + (index / spineCount) * 28;
+    const taper = 1 - Math.abs((y + 1) / 17);
+    addParticle(
+      (Math.random() - 0.5) * (0.28 + Math.max(0, taper) * 0.75),
+      y + (Math.random() - 0.5) * 0.7,
+      "spine",
+      1,
+    );
+  }
+}
+
+function resizeHeartCanvas() {
+  if (!heartCanvas || !heartContext) return;
+  const bounds = heartCanvas.getBoundingClientRect();
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  heartCanvasWidth = Math.max(1, bounds.width);
+  heartCanvasHeight = Math.max(1, bounds.height);
+  heartCanvas.width = Math.round(heartCanvasWidth * ratio);
+  heartCanvas.height = Math.round(heartCanvasHeight * ratio);
+  heartContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+  buildHeartParticles();
+}
+
+function heartbeatScale(time) {
+  const phase = time % 1180;
+  const firstBeat = Math.exp(-(((phase - 120) / 62) ** 2)) * 0.115;
+  const secondBeat = Math.exp(-(((phase - 292) / 82) ** 2)) * 0.075;
+  return 1 + firstBeat + secondBeat;
+}
+
+function drawParticleHeart(time) {
+  window.requestAnimationFrame(drawParticleHeart);
+  if (!heartContext || !heartCanvas || currentScreen !== "heart") return;
+
+  heartContext.fillStyle = "rgba(3, 1, 2, 0.24)";
+  heartContext.fillRect(0, 0, heartCanvasWidth, heartCanvasHeight);
+
+  const scale =
+    (Math.min(heartCanvasWidth, heartCanvasHeight) / 39) * heartbeatScale(time);
+  const centerX = heartCanvasWidth / 2;
+  const centerY = heartCanvasHeight / 2 + scale * 1.2;
+
+  heartContext.globalCompositeOperation = "lighter";
+  heartParticles.forEach((particle) => {
+    const shimmer = Math.sin(time * 0.001 * particle.speed + particle.phase);
+    const jitterX = shimmer * particle.drift;
+    const jitterY = Math.cos(time * 0.0013 * particle.speed + particle.phase) * particle.drift;
+    const x = centerX + (particle.x + jitterX) * scale;
+    const y = centerY - (particle.y + jitterY) * scale;
+    const alpha =
+      particle.type === "dust"
+        ? 0.18 + (shimmer + 1) * 0.1
+        : particle.type === "spine"
+          ? 0.78 + (shimmer + 1) * 0.1
+          : 0.44 + particle.strength * 0.35 + shimmer * 0.08;
+
+    heartContext.beginPath();
+    heartContext.fillStyle =
+      particle.type === "spine"
+        ? `rgba(255, 70, 58, ${alpha})`
+        : `rgba(242, ${24 + particle.strength * 20}, ${25 + particle.strength * 14}, ${alpha})`;
+    heartContext.arc(
+      x,
+      y,
+      particle.size * (particle.type === "spine" ? 1.1 : 1),
+      0,
+      Math.PI * 2,
+    );
+    heartContext.fill();
+  });
+  heartContext.globalCompositeOperation = "source-over";
+}
+
+window.addEventListener("resize", resizeHeartCanvas);
+window.requestAnimationFrame(() => {
+  resizeHeartCanvas();
+  window.requestAnimationFrame(drawParticleHeart);
+});
+
 async function playMusic() {
   if (!audio || musicUnavailable) return;
   try {
@@ -146,8 +295,10 @@ function changeScreen(next, event) {
 
   const currentIndex = screens.indexOf(next);
   currentScreen = next;
+  document.querySelector(".site")?.classList.toggle("is-heart-screen", next === "heart");
 
   if (next === "heart") {
+    resizeHeartCanvas();
     window.setTimeout(spawnFloatingWish, 120);
     window.setTimeout(spawnFloatingWish, 340);
     window.setTimeout(spawnFloatingWish, 560);

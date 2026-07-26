@@ -9,7 +9,8 @@ Website sinh nhật dạng tĩnh, tối ưu để chạy trực tiếp trên Git
   `photo-3.jpg`, `photo-4.jpg`.
 - Mỗi ảnh và chú thích được ẩn sau một tấm bìa; người xem phải bấm vào từng
   Polaroid để mở kỷ niệm và có thể bấm lần nữa để đóng.
-- Trang cuối có trái tim lớn đập theo nhịp kép và lời nhắn nhỏ ở góc.
+- Trang cuối có trái tim tạo từ hàng nghìn hạt đỏ phát sáng trên nền tối, chuyển
+  động và đập theo nhịp kép, cùng lời nhắn nhỏ ở góc.
 - Các câu “Anh yêu em” và “Happy birthday” bằng tiếng Việt, Anh, Hàn, Nhật,
   Trung xuất hiện ngẫu nhiên quanh trái tim rồi mờ dần.
 - Hình lịch và nhạc cũng nằm trong thư mục chính để tránh lỗi khi tải lên GitHub.
